@@ -1,0 +1,427 @@
+  header {
+  	width: 100%;
+  	height: 35px;
+  	position: fixed;
+  	top: 0px;
+  	margin-left: 0;
+  	z-index: 5;
+  	background-color: #3f3f3f;
+  	-webkit-transition: all 0.3s ease-out;
+  }
+
+  header.small img {
+  	width: auto;
+  	height: 18px;
+  	margin-bottom: 3px;
+  	-webkit-transition: all 0.3s ease-out;
+  }
+
+  .menu {
+  	margin-top: 5px;
+  	margin-left: 20px;
+  	cursor: pointer;
+  	font-weight: 500;
+  	color: rgba(255, 255, 255, 1) !important;
+  	padding: 0;
+  	text-decoration: none !important;
+  	display: inline-block;
+
+  }
+
+  .menu:hover {
+  	color: #66aeff !important;
+  	text-decoration: none;
+  }
+
+  .login_info {
+  	float: right;
+  	padding-top: 3px;
+  	background-color: #3f3f3f;
+
+  }
+
+  .name {
+  	color: #fff;
+  	width: 50px;
+  	height: 0.5%;
+  	border-style: none;
+  	background-color: #3f3f3f;
+  	text-align: center;
+  }
+
+  .employeenum {
+  	color: #fff;
+  	width: 50px;
+  	border-style: none;
+  	background-color: #3f3f3f;
+  	text-align: left;
+  }
+
+  .vip {
+  	width: 100%;
+  	height: 220px;
+  	padding-top: 30px;
+  	margin-bottom: 10px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  }
+
+  .vvip:hover {
+  	opacity: 0.8;
+  	transition: all .5s;
+
+  }
+
+  .vvip {
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .btn-function {
+  	width: 30px;
+  	height: 30px;
+  	border: 0;
+  	border-radius: 10px;
+  	padding: 0;
+  	cursor: pointer;
+  	background-size: contain;
+  	outline: none;
+  	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  .btn-function:focus {
+  	outline: none;
+  }
+
+  .searchBar {
+  	width: 167px;
+  	height: 32px;
+  	vertical-align: middle;
+  	border-radius: 10px;
+  	margin-top: 10px;
+  	border: 1px solid #e7e7e7;
+  	visibility: hidden;
+  }
+
+  .searchInput {
+  	width: 135px;
+  	height: 30px;
+  	padding: 0;
+  	text-align: center;
+  	margin: 0;
+  	float: left;
+  	border-top-left-radius: 10px;
+  	border-bottom-left-radius: 10px;
+  	border: 0;
+  	outline: none;
+
+  }
+
+  input:focus::-webkit-input-placeholder,
+  textarea:focus::-webkit-input-placeholder {
+  	color: transparent;
+  }
+
+  .searchButton {
+  	width: 30px;
+  	height: 30px;
+  	border: 0;
+  	padding: 0;
+  	margin: 0;
+  	background-image: url('/images/search2.png');
+  	background-size: contain;
+  	float: left;
+  	border-top-right-radius: 10px;
+  	border-bottom-right-radius: 10px;
+  	outline: none;
+  	cursor: pointer;
+  }
+
+  .searchButton:focus {
+  	outline: none;
+  }
+
+  .searchButton:hover {
+  	background-color: #000000;
+  }
+
+  .organization {
+  	width: 2650px;
+  	height: 1100px;
+  	margin-bottom: 10px;
+  	align-content: center;
+  }
+
+  .divCo {
+  	width: 250px;
+  	margin: 5px;
+  	align-content: center;
+  	float: left;
+  }
+
+  .fingers {
+  	margin-left: 5px;
+  }
+
+  .finger {
+  	width: 12px;
+  	height: 12px;
+  	text-align: center;
+  	border-radius: 6px;
+  	border: solid #000 0.5px;
+  	background-color: #fff;
+  	cursor: pointer;
+  	outline: none;
+  }
+
+  .finger:focus {
+  	cursor: pointer;
+  	outline: none;
+  }
+
+  .boxCo {
+  	width: 100%;
+  	margin-bottom: 10px;
+  	border-radius: 5px;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .btnCo {
+  	width: 100%;
+  	height: 35px;
+  	line-height: 14px;
+  	font-weight: bold;
+  	font-size: 17px;
+  	background-color: #ffffff;
+  	border-top-left-radius: 5px;
+  	border-top-right-radius: 5px;
+  	color: #41535b;
+  	border-top: solid 1px #e1e0e0;
+  	border-left: solid 1px #e1e0e0;
+  	border-right: solid 1px #e1e0e0;
+  	border-bottom: 0;
+  	padding: 0;
+
+  	text-align: center;
+  	outline: none;
+  	cursor: pointer;
+  	-webkit-transition: all 0.1s ease-in;
+  }
+
+  .btnCo:focus {
+  	outline: none;
+  	box-shadow: none;
+  }
+
+  .btnCo:hover {
+  	background-color: rgba(254, 181, 67, .9);
+  	border: 0;
+  	color: white;
+  }
+
+  .GM {
+  	width: 100%;
+  	background-color: rgba(0, 0, 0, .7);
+  	border: 0;
+  	border-bottom-left-radius: 5px;
+  	border-bottom-right-radius: 5px;
+  	text-align: center;
+  	font-size: 14px;
+  	color: #fff;
+  }
+
+  .GM:focus {
+  	outline: none;
+  }
+
+  .secName {
+  	width: 100%;
+  	height: 1000px;
+  	margin: 0 auto;
+  	padding: 0;
+  	padding: 0;
+  	text-align: center;
+  	align-content: center;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  }
+
+  .content {
+  	width: 82px;
+  	height: 100%;
+  	line-height: 21px;
+  	float: left;
+  }
+
+  .dept {
+  	line-height: 22px;
+  	background-color: rgba(42, 53, 69, .9);
+  	color: #fff !important;
+  	font-size: 15px;
+  	font-weight: 520;
+  	cursor: default;
+  	padding: 0;
+  	border: 0;
+  	border-radius: 1px;
+  	display: block;
+  	margin-bottom: 10px;
+  }
+
+  .team {
+  	font-size: 14px;
+  	margin-bottom: 0;
+  	background-color: #e5e4e1;
+  	font-weight: bold;
+  }
+
+  .btnName {
+  	width: 100%;
+  	height: 21px;
+  	font-size: 14px;
+  	background-color: #ffffff;
+  	margin: 0;
+  	border: 0;
+  	padding: 0;
+  	outline: none;
+  	cursor: pointer;
+  }
+
+  .btnName:focus {
+  	outline: 0;
+  }
+
+  .btnName:hover {
+  	background-color: #2b66bc;
+  	color: #fff;
+  	transition: ease-in .2s;
+
+  }
+
+  .secCount {
+  	width: 60px;
+  	border: 0;
+  	border-radius: 5px;
+  	text-align: center;
+  	font-size: 18px;
+  	background-color: #fff;
+  	color: #000;
+  	margin-bottom: 5px;
+  }
+
+  @font-face {
+  	font-family: "NanumSquare";
+  	src: url("/font/NanumSquareR.ttf");
+  }
+
+  body,
+  div,
+  p,
+  input,
+  button {
+  	font-family: 'NanumSquare';
+  }
+
+  #exampleModalLongTitle {
+  	font-size: 24px;
+  	font-weight: 900;
+  	color: #2c8ef8;
+  	margin: 0 auto;
+  	text-align: center;
+  }
+
+  table {
+  	border-radius: 6px;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #table1 thead th {
+  	background-color: rgba(0, 0, 0, .7);
+  	color: #fff;
+  	padding: 2px;
+  }
+
+  #table1 thead th:first-child {
+  	border-top-left-radius: 5px;
+  }
+
+  #table1 thead th:last-child {
+  	border-top-right-radius: 5px;
+  }
+
+  #table1 tbody tr {
+  	border-left: solid 1.5px #ccc;
+  	border-bottom: solid 1.5px #ccc;
+  	border-right: solid 1.5px #ccc;
+  }
+
+  #table1 tbody tr:hover {
+  	background-color: rgba(140, 190, 253, .7);
+  	transition: all 0.3s;
+  }
+
+  #table2 thead th {
+  	background-color: rgba(0, 0, 0, .7);
+  	color: #fff;
+  	padding: 2px;
+  	border-top-right-radius: 5px;
+  	border-top-left-radius: 5px;
+  }
+
+  #table2 tbody tr {
+  	border-left: solid 1.5px #ccc;
+  	border-right: solid 1.5px #ccc;
+  }
+
+  .domestic {
+  	background-color: #f2f2f2;
+  }
+
+  .foreign {}
+
+  .duplicated {}
+
+  .intern {
+  	background-color: #fbacac;
+  }
+
+  .subStaff {
+  	margin: 8px;
+  	font-size: 18px;
+  	border: 1px solid;
+  	border-radius: 5px;
+  	background-color: white;
+  	outline: none;
+  	padding: 5px;
+  	padding-left: 10px;
+  	padding-right: 10px;
+  }
+
+  .subStaff:focus {
+  	outline: none;
+  }
+
+  .subStaff-selected {
+  	background-color: #5fcaff;
+  	color: #ffffff;
+  }
+
+  .fake {
+  	margin: 0;
+  	padding: 0;
+  	line-height: 2px;
+  	visibility: hidden;
+  }
+
+  .fake-line {
+  	margin: 0;
+  	padding: 0;
+  	line-height: 2px;
+  	visibility: hidden;
+  }
+
+  .searched {
+  	background-color: red;
+  	color: #ffffff;
+  }

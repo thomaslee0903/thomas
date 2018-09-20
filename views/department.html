@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>VHRM - DEPARTMENT</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/department.css" rel="stylesheet" type="text/css">
+	<link href="/css/dep_modalCondent.css" rel="stylesheet" type="text/css">
+
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="/js/go.js"></script>
+	<script src="/js/department.js"></script>
+	<script src="/js/mdernizr.min.js"></script>
+	<script src="/js/animatescroll.js"></script>
+
+</head>
+
+<body>
+
+	<header style="padding-bottom:2px; padding-left: 10px;">
+
+		<img src="/images/logo.png" width="40" height="23" />
+		<a style="margin-left: 10px; color: #ffffff; font-weight: 600; cursor: default; display: inline-block;">Visual HRM</a>
+
+		<a class="menu" style="margin-left: 50px;" href="/">CORPORATION</a>
+		<a class="menu" href="/department">DEPARTMENT</a>
+		<a class="menu" href="/admin">ADMIN</a>
+
+		<div class="login_info">
+			<img src="/images/userID.png" width="20" height="23" style="padding-bottom: 3px;" />
+			<input class="name" value="이은주" readonly/>
+			<input class="employeenum" value="인턴" readonly/>
+		</div>
+	</header>
+
+	<div class="ringMenu">
+		<ul>
+			<li class="main"><a></a></li>
+			<li class="left"><a href="#" onclick="$('#title1').animatescroll({scrollSpeed:600,easing:'easeOutCubic'});">S</a></li>
+			<li class="middle"><a href="#" onclick="$('#title2').animatescroll({scrollSpeed:600,easing:'easeOutCubic'});">P</a></li>
+			<li class="right"><a href="#" onclick="$('#title3').animatescroll({scrollSpeed:600,easing:'easeOutCubic'});">M</a></li>
+		</ul>
+	</div>
+
+	<!-- Sales Department -->
+	<div id="title1" style="background-color: #2B7ABF; margin-top: 20px;">SALES TEAM</div>
+	<div id="salesOverview"></div>
+	<div id="salesDiv" style="height:650px; background-color: #2B7ABF;"></div>
+
+	<!-- Production Department -->
+	<div id="title2" style="background-color: #20323F;"> PRODUCTION TEAM</div>
+	<div id="productOverview"></div>
+	<div id="productDiv" style=" height: 650px; background-color: #20323F;"></div>
+
+	<!-- Management Department -->
+	<div id="title3" style="background-color: #1E9B83;">MANAGEMENT TEAM</div>
+	<div id="manageOverview"></div>
+	<div id="manageDiv" style="height: 650px; background-color: #1E9B83;"></div>
+
+	<!--모달부분-->
+	<div class="modal">
+		<div class="close-modal">
+			<a style="font-size: 28px; position: absolute; top: 0; right: 10px;">&times;</a>
+		</div>
+
+		<!--받는보고 하는보고 토글-->
+		<div class="dep-container">
+			<div class="toggleTitle" style="margin-bottom: 20px;">INDIRECT REPORT TO.</div>
+
+			<div class="dep-switcher" style="margin-bottom: 20px;">
+				<p class="fieldset">
+
+					<input type="radio" name="duration-1" value="monthly" id="monthly-1" checked>
+					<label for="monthly-1" class="labelL"></label>
+
+					<input type="radio" name="duration-1" value="yearly" id="yearly-1">
+					<label for="yearly-1" class="labelR"></label>
+
+					<span class="switch"> </span>
+				</p>
+			</div>
+
+			<!-- 인원 리스트 -->
+			<ul class="dep-list bounce-invert">
+
+				<!--첫번째 네모칸-->
+				<li>
+					<div class="depTitle">SALES</div>
+					<ul class="dep-wrapper">
+
+						<li data-type="monthly" class="is-visible">
+							<ul class="eplyList1">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+
+						<li data-type="yearly" class="is-hidden">
+							<ul class="eplyList1">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+
+					</ul>
+				</li>
+
+				<!--두번째 네모칸-->
+				<li>
+
+					<div class="depTitle">PRODUCTION</div>
+					<ul class="dep-wrapper">
+
+						<li data-type="monthly" class="is-visible">
+							<ul class="eplyList2">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+
+						<li data-type="yearly" class="is-hidden">
+
+							<ul class="eplyList2">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+
+					</ul>
+				</li>
+
+				<!--세번째 네모칸-->
+				<li>
+					<div class="depTitle">MANAGEMENT</div>
+					<ul class="dep-wrapper">
+
+						<li data-type="monthly" class="is-visible">
+							<ul class="eplyList3">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+
+						<li data-type="yearly" class="is-hidden">
+							<ul class="eplyList3">
+								<!--이름 리스트-->
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+
+	<input type="search" id="mySearch" onkeypress=" if(event.keyCode === 13) searchDiagram()">
+	<button onclick="searchDiagram()">Search</button>
+
+</body>
+
+</html>

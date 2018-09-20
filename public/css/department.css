@@ -1,0 +1,277 @@
+@font-face {
+	font-family: "NanumSquare";
+	src: url("/font/NanumSquareR.ttf");
+}
+
+@font-face {
+	font-family: "Questrial";
+	src: url("/font/Questrial-Regular.ttf");
+}
+
+:focus {
+	outline: 0;
+}
+
+/* width */
+
+div::-webkit-scrollbar {
+	background-color: transparent;
+}
+
+/* Track */
+
+div::-webkit-scrollbar-track {
+	border-radius: 20px;
+	background-color: transparent;
+}
+
+/* Handle */
+
+div::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb:hover {
+	width: 12px;
+	background: transparent;
+}
+
+body {
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0, .04);
+
+}
+
+header {
+	width: 100%;
+	height: 35px;
+	position: fixed;
+	top: 0;
+	margin-left: 0;
+	z-index: 5;
+	background-color: #3f3f3f;
+	-webkit-transition: all 0.3s ease-out;
+}
+
+header.small img {
+	width: auto;
+	height: 18px;
+	margin-bottom: 3px;
+	-webkit-transition: all 0.3s ease-out;
+}
+
+.menu {
+	margin-top: 5px;
+	cursor: pointer;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1) !important;
+	padding: 0;
+	margin-left: 20px;
+	text-decoration: none !important;
+	display: inline-block;
+
+}
+
+.menu:hover {
+	color: #66aeff !important;
+	text-decoration: none;
+}
+
+.login_info {
+	float: right;
+	padding-top: 3px;
+	background-color: #3f3f3f;
+
+}
+
+.name {
+	color: #fff;
+	width: 50px;
+	height: 0.5%;
+	border-style: none;
+	background-color: #3f3f3f;
+	text-align: center;
+}
+
+.employeenum {
+	color: #fff;
+	width: 50px;
+	border-style: none;
+	background-color: #3f3f3f;
+	text-align: left;
+}
+
+body,
+div,
+p,
+a,
+input,
+button,
+ul,
+li {
+	font-family: 'NanumSquare';
+}
+
+#title1,
+#title2,
+#title3 {
+	width: 100%;
+	margin: 0px;
+	padding: 30px 0px 10px 0px;
+	font-size: 4em;
+	font-family: 'Questrial';
+	letter-spacing: 0.15em;
+	text-align: center;
+	color: #ffffff;
+	cursor: context-menu;
+
+	text-shadow: 0 1px 0 #ccc,
+	0 2px 0 #c9c9c9,
+	0 3px 0 #bbb,
+	0 4px 0 #b9b9b9,
+	0 5px 0 #aaa,
+	0 5px 10px rgba(0, 0, 0, .25),
+	0 10px 10px rgba(0, 0, 0, .2),
+	0 20px 20px rgba(0, 0, 0, .15);
+}
+
+#salesOverview,
+#productOverview,
+#manageOverview {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	left: 5px;
+	background-color: rgba(0, 0, 0, .6);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	z-index: 4;
+}
+
+#salesDiv,
+#productDiv,
+#manageDiv {
+	background-color: rgba(255, 255, 255, .5);
+	margin-left: 0;
+	position: relative;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ모달의 CSS입니다~~!!!ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+.modal {
+	background-color: rgba(220, 220, 220, .87);
+	display: none;
+	position: fixed;
+	margin-left: 10%;
+	margin-top: 6%;
+	width: 80%;
+	height: 75%;
+	z-index: 10;
+	vertical-align: middle;
+	overflow: auto;
+	box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.7);
+}
+
+.close-modal {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 25px;
+	height: 25px;
+	padding: 20px;
+	cursor: pointer;
+}
+
+.close-modal:hover {
+	background-color: rgba(150, 150, 150, .5);
+}
+
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+.ringMenu {
+	position: fixed;
+	font-size: 1.3em;
+	right: 10px;
+	bottom: 20px;
+	width: 100px;
+	height: 30px;
+	margin-bottom: 10px;
+	z-index: 10;
+}
+
+.ringMenu ul {
+	list-style: none;
+	position: relative;
+	width: 50px;
+	color: white;
+}
+
+.ringMenu ul a {
+	color: white;
+	text-decoration: none;
+}
+
+.ringMenu ul li {
+	transition: all 0.3s ease-in-out;
+}
+
+.ringMenu ul li a {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background: rgba(50, 50, 50, 0.7);
+	text-align: center;
+	line-height: 50px;
+	border-radius: 25px;
+}
+
+.ringMenu ul li:nth-child(2) a:hover {
+	background: rgba(42, 168, 188, 0.7);
+}
+
+.ringMenu ul li:nth-child(3) a:hover {
+	background: rgba(36, 77, 119, 0.7);
+}
+
+.ringMenu ul li:nth-child(4) a:hover {
+	background: rgba(170, 221, 10, 0.5);
+}
+
+.ringMenu ul li:not(.main) {
+	transform: rotate(0deg) scale(0);
+	opacity: 0;
+}
+
+.ringMenu:hover ul li {
+	transform: rotate(0) scale(1);
+	opacity: 1;
+}
+
+.ringMenu ul li.left {
+	transform-origin: 152px 50%;
+	position: absolute;
+	top: 0;
+	left: -52px;
+}
+
+.ringMenu ul li.middle {
+	transform-origin: 50% 1px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.ringMenu ul li.right {
+	transform-origin: -52px 50%;
+	position: absolute;
+	top: 0px;
+	right: -52px;
+}
+
+.main a:hover {
+	cursor: context-menu;
+}

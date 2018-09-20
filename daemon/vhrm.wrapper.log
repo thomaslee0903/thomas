@@ -1,0 +1,120 @@
+2018-08-28 15:19:17 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-28 15:19:17 - Started 33456
+2018-08-28 15:33:42 - Stopping vhrm.exe
+2018-08-28 15:33:42 - ProcessKill 33456
+2018-08-28 15:33:42 - Found child process: 33936 Name: node.exe
+2018-08-28 15:33:42 - Stopping process 33936
+2018-08-28 15:33:42 - Send SIGINT 33936
+2018-08-28 15:33:42 - SIGINT to 33936 failed - Killing as fallback
+2018-08-28 15:33:42 - Stopping process 33456
+2018-08-28 15:33:42 - Send SIGINT 33456
+2018-08-28 15:33:42 - SIGINT to33456 successful
+2018-08-28 15:33:42 - Finished vhrm.exe
+2018-08-28 15:33:45 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-28 15:33:45 - Started 34008
+2018-08-28 15:48:43 - Stopping vhrm.exe
+2018-08-28 15:48:43 - ProcessKill 34008
+2018-08-28 15:48:43 - Found child process: 32112 Name: node.exe
+2018-08-28 15:48:43 - Stopping process 32112
+2018-08-28 15:48:43 - Send SIGINT 32112
+2018-08-28 15:48:43 - SIGINT to 32112 failed - Killing as fallback
+2018-08-28 15:48:43 - Stopping process 34008
+2018-08-28 15:48:43 - Send SIGINT 34008
+2018-08-28 15:48:43 - SIGINT to34008 successful
+2018-08-28 15:48:43 - Finished vhrm.exe
+2018-08-28 15:50:34 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-28 15:50:34 - Started 35456
+2018-08-28 15:58:51 - Stopping vhrm.exe
+2018-08-28 15:58:51 - ProcessKill 35456
+2018-08-28 15:58:51 - Found child process: 35484 Name: node.exe
+2018-08-28 15:58:52 - Stopping process 35484
+2018-08-28 15:58:52 - Send SIGINT 35484
+2018-08-28 15:58:52 - SIGINT to 35484 failed - Killing as fallback
+2018-08-28 15:58:52 - Stopping process 35456
+2018-08-28 15:58:52 - Send SIGINT 35456
+2018-08-28 15:58:52 - SIGINT to35456 successful
+2018-08-28 15:58:52 - Finished vhrm.exe
+2018-08-28 15:59:10 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-28 15:59:11 - Started 35716
+2018-08-28 16:05:45 - Stopping vhrm.exe
+2018-08-28 16:05:45 - ProcessKill 35716
+2018-08-28 16:05:45 - Found child process: 33424 Name: node.exe
+2018-08-28 16:05:45 - Stopping process 33424
+2018-08-28 16:05:45 - Send SIGINT 33424
+2018-08-28 16:05:45 - SIGINT to 33424 failed - Killing as fallback
+2018-08-28 16:05:45 - Stopping process 35716
+2018-08-28 16:05:45 - Send SIGINT 35716
+2018-08-28 16:05:45 - SIGINT to35716 successful
+2018-08-28 16:05:45 - Finished vhrm.exe
+2018-08-28 16:06:48 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-28 16:06:48 - Started 35472
+2018-08-29 10:56:28 - Stopping vhrm.exe
+2018-08-29 10:56:28 - ProcessKill 35472
+2018-08-29 10:56:28 - Found child process: 32932 Name: node.exe
+2018-08-29 10:56:28 - Stopping process 32932
+2018-08-29 10:56:28 - Send SIGINT 32932
+2018-08-29 10:56:28 - SIGINT to 32932 failed - Killing as fallback
+2018-08-29 10:56:28 - Stopping process 35472
+2018-08-29 10:56:28 - Send SIGINT 35472
+2018-08-29 10:56:28 - SIGINT to35472 successful
+2018-08-29 10:56:28 - Finished vhrm.exe
+2018-08-29 10:56:45 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-29 10:56:45 - Started 39600
+2018-08-29 10:59:26 - Stopping vhrm.exe
+2018-08-29 10:59:26 - ProcessKill 39600
+2018-08-29 10:59:26 - Found child process: 39684 Name: node.exe
+2018-08-29 10:59:26 - Stopping process 39684
+2018-08-29 10:59:26 - Send SIGINT 39684
+2018-08-29 10:59:26 - SIGINT to 39684 failed - Killing as fallback
+2018-08-29 10:59:26 - Stopping process 39600
+2018-08-29 10:59:26 - Send SIGINT 39600
+2018-08-29 10:59:26 - SIGINT to39600 successful
+2018-08-29 10:59:26 - Finished vhrm.exe
+2018-08-29 11:01:09 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-29 11:01:09 - Started 39500
+2018-08-29 11:01:26 - Stopping vhrm.exe
+2018-08-29 11:01:26 - ProcessKill 39500
+2018-08-29 11:01:26 - Found child process: 38012 Name: node.exe
+2018-08-29 11:01:26 - Stopping process 38012
+2018-08-29 11:01:26 - Send SIGINT 38012
+2018-08-29 11:01:26 - SIGINT to 38012 failed - Killing as fallback
+2018-08-29 11:01:26 - Stopping process 39500
+2018-08-29 11:01:26 - Send SIGINT 39500
+2018-08-29 11:01:26 - SIGINT to39500 successful
+2018-08-29 11:01:26 - Finished vhrm.exe
+2018-08-29 11:02:25 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-29 11:02:25 - Started 39512
+2018-08-29 12:16:30 - Stopping vhrm.exe
+2018-08-29 12:16:30 - ProcessKill 39512
+2018-08-29 12:16:30 - Found child process: 39236 Name: node.exe
+2018-08-29 12:16:30 - Stopping process 39236
+2018-08-29 12:16:30 - Send SIGINT 39236
+2018-08-29 12:16:30 - SIGINT to 39236 failed - Killing as fallback
+2018-08-29 12:16:30 - Stopping process 39512
+2018-08-29 12:16:30 - Send SIGINT 39512
+2018-08-29 12:16:30 - SIGINT to39512 successful
+2018-08-29 12:16:30 - Finished vhrm.exe
+2018-08-29 12:22:00 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-29 12:22:00 - Started 37672
+2018-08-29 13:57:01 - Stopping vhrm.exe
+2018-08-29 13:57:01 - ProcessKill 37672
+2018-08-29 13:57:01 - Found child process: 37344 Name: node.exe
+2018-08-29 13:57:01 - Stopping process 37344
+2018-08-29 13:57:01 - Send SIGINT 37344
+2018-08-29 13:57:01 - SIGINT to 37344 failed - Killing as fallback
+2018-08-29 13:57:01 - Stopping process 37672
+2018-08-29 13:57:01 - Send SIGINT 37672
+2018-08-29 13:57:01 - SIGINT to37672 successful
+2018-08-29 13:57:01 - Finished vhrm.exe
+2018-08-29 14:00:17 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\Administrator\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file D:\VHRM\vhrm\app.js --log "VHRM wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-29 14:00:17 - Started 38448
+2018-08-29 14:03:20 - Stopping vhrm.exe
+2018-08-29 14:03:20 - ProcessKill 38448
+2018-08-29 14:03:20 - Found child process: 38336 Name: node.exe
+2018-08-29 14:03:20 - Stopping process 38336
+2018-08-29 14:03:20 - Send SIGINT 38336
+2018-08-29 14:03:20 - SIGINT to 38336 failed - Killing as fallback
+2018-08-29 14:03:20 - Stopping process 38448
+2018-08-29 14:03:20 - Send SIGINT 38448
+2018-08-29 14:03:20 - SIGINT to38448 successful
+2018-08-29 14:03:20 - Finished vhrm.exe

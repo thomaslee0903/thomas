@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>VHRM - CORPORATION</title>
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+	<!-- Custom CSS file -->
+	<link href="/css/corporation.css" rel="stylesheet" type="text/css">
+	<link href="/css/vivify.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/new.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body id="body" style="height: 100%">
+
+	<header style="padding-bottom:2px; padding-left: 10px;">
+
+		<img src="/images/logo.png" width="40" height="23" />
+		<a style="margin-left: 10px; color: #ffffff;  font-weight: 600; cursor:default; display: inline-block;">Visual HRM</a>
+		<a class="menu" style="margin-left: 50px;" href="/">CORPORATION</a>
+		<a class="menu" href="/department">DEPARTMENT</a>
+		<a class="menu" href="/admin">ADMIN</a>
+
+		<div class="login_info">
+			<img src="/images/userID.png" width="20" height="23" style="padding-bottom: 3px;" />
+			<input class="name" value="이은주" readonly/>
+			<input class="employeenum" value="인턴" readonly/>
+		</div>
+
+	</header>
+
+
+	<div id="vip" class="vip">
+
+		<!-- Functional Button Section -->
+		<div style="width: 300px; height: 180px; padding-top: 20px; margin-left: 1%;">
+			<button title="검색" id="search" class="btn-function" style="background-image: url('/images/search.png'); margin-left: 0px;" onclick="showSearch()"></button>
+			<button title="새로고침" class="btn-function" style="background-image: url('/images/reload.png');" onclick="window.location.reload()"></button>
+			<button title="확대" class="btn-function" style="background-image: url('/images/plus.png');" onclick="Zoom(1)"></button>
+			<button title="축소" class="btn-function" style="background-image: url('/images/minus.png');" onclick="Zoom(-1)"></button>
+			<button title="인원 현황" id="summary" class="btn-function" style="background-image: url('/images/summary.png');" onclick="summary()"></button>
+
+			<br>
+			<div class="searchBar" id="searchSection">
+				<input class="searchInput" id="searchInput" placeholder="Name">
+				<button class="searchButton" onclick="search()"></button>
+			</div>
+		</div>
+
+		<!-- Vip Section -->
+		<div style="text-align: center; margin-left: 300px; margin-right: 220px;">
+			<img class="vvip" src="/images/chairman.png" width=220 height=28 style="margin-top: 10px; "><br>
+			<img class="vvip" src="/images/president.png" width=220 height=28 style="margin-top: 20px; "><br>
+			<img class="vvip" src="/images/sales-director.png" width=220 height=28 style="margin-top: 20px; "><br>
+		</div>
+
+
+		<!-- Table Section -->
+		<table id="table1" style="text-align: center; margin-top: 20px; visibility: hidden;">
+			<thead>
+				<tr>
+					<th style="width: 120px;">구 &nbsp; 분</th>
+					<th style="width: 100px;">인원(명)</th>
+					<th style="width: 160px;">비 &nbsp; 고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>국내 근무자</td>
+					<td></td>
+					<td>회장님, 사장님 포함</td>
+				</tr>
+				<tr>
+					<td>해외 근무자</td>
+					<td></td>
+					<td>부사장님 포함</td>
+				</tr>
+				<tr class="table-warning">
+					<td>총 &nbsp; &nbsp; 원</td>
+					<td></td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>외국인 근로자</td>
+					<td></td>
+					<td>총원에서 제외</td>
+				</tr>
+				<tr>
+					<td>인 턴 사 원</td>
+					<td></td>
+					<td>총원에서 제외</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table id="table2" style="width: 100px; height: 165px; text-align: center; margin-top: 20px; margin-left: 20px; visibility: hidden;">
+			<thead>
+				<tr>
+					<th style="padding: 3px;">구분 표시</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="background-color: #f2f2f2;">
+					<td>국내 근무자</td>
+				</tr>
+				<tr style="background-color: #7fd1ff;">
+					<td>이동 부서</td>
+				</tr>
+				<tr style="background-color: #ffffff">
+					<td>- (공석)</td>
+				</tr>
+				<tr style="background-color: #efd07c;">
+					<td>신입 사원</td>
+				</tr>
+				<tr style="background-color: #fbacac;">
+					<td>인턴 사원</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+
+	<!-- Coperation Section -->
+	<div class="organization" id="organization">
+
+		<div id="co1" class="divCo" style="margin-left: 20px;">
+
+			<div id="fingers1" class="fingers">
+				<button class="finger" id="finger1-1" onclick="fingerToggle('co1', 'finger1-1')" value="1"></button>
+				<button class="finger" id="finger1-2" onclick="fingerToggle('co1', 'finger1-2')" value="1"></button>
+				<button class="finger" id="finger1-3" onclick="fingerToggle('co1', 'finger1-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn1" class="btnCo" onclick="coToggle('co1', 'fingers1');" value="1">-</button>
+				<input id="GM1" class="GM" value="" readonly>
+			</div>
+
+			<div class="secName" id="section1">
+
+				<div id="content1-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales1" class="fake">　</p>
+				</div>
+
+				<div id="content1-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production1" class="fake">　</p>
+				</div>
+
+				<div id="content1-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management1" class="fake">　</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="co2" class="divCo">
+
+			<div id="fingers2" class="fingers">
+				<button class="finger" id="finger2-1" onclick="fingerToggle('co2', 'finger2-1')" value="1"></button>
+				<button class="finger" id="finger2-2" onclick="fingerToggle('co2', 'finger2-2')" value="1"></button>
+				<button class="finger" id="finger2-3" onclick="fingerToggle('co2', 'finger2-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn2" class="btnCo" onclick="coToggle('co2', 'fingers2')" value="1">-</button>
+				<input id="GM2" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section2">
+			
+				<div id="content2-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales2" class="fake">　</p>
+				</div>
+
+				<div id="content2-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production2" class="fake">　</p>
+				</div>
+
+				<div id="content2-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management2" class="fake">　</p>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div id="co3" class="divCo">
+
+			<div id="fingers3" class="fingers">
+				<button class="finger" id="finger3-1" onclick="fingerToggle('co3', 'finger3-1')" value="1"></button>
+				<button class="finger" id="finger3-2" onclick="fingerToggle('co3', 'finger3-2')" value="1"></button>
+				<button class="finger" id="finger3-3" onclick="fingerToggle('co3', 'finger3-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn3" class="btnCo" onclick="coToggle('co3', 'fingers3')" value="1">-</button>
+				<input id="GM3" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section3">
+			
+				<div id="content3-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales3" class="fake">　</p>
+				</div>
+
+				<div id="content3-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production3" class="fake">　</p>
+				</div>
+
+				<div id="content3-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management3" class="fake">　</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co4" class="divCo">
+
+			<div id="fingers4" class="fingers">
+				<button class="finger" id="finger4-1" onclick="fingerToggle('co4', 'finger4-1')" value="1"></button>
+				<button class="finger" id="finger4-2" onclick="fingerToggle('co4', 'finger4-2')" value="1"></button>
+				<button class="finger" id="finger4-3" onclick="fingerToggle('co4', 'finger4-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn4" class="btnCo" onclick="coToggle('co4', 'fingers4')" value="1">-</button>
+				<input id="GM4" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section4">
+			
+				<div id="content4-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales4" class="fake">　</p>
+				</div>
+
+				<div id="content4-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production4" class="fake">　</p>
+				</div>
+
+				<div id="content4-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management4" class="fake">　</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co5" class="divCo">
+
+			<div id="fingers5" class="fingers">
+				<button class="finger" id="finger5-1" onclick="fingerToggle('co5', 'finger5-1')" value="1"></button>
+				<button class="finger" id="finger5-2" onclick="fingerToggle('co5', 'finger5-2')" value="1"></button>
+				<button class="finger" id="finger5-3" onclick="fingerToggle('co5', 'finger5-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn5" class="btnCo" onclick="coToggle('co5', 'fingers5')" value="1">-</button>
+				<input id="GM5" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section5">
+				<div id="content5-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales5" class="fake">　</p>
+				</div>
+
+				<div id="content5-2" class="content">
+
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<!--
+					<p class="team">JSC-생산</p>
+					<button class="btnName" onclick="openFirstModal()" value="0">김상용 부장</button>
+					<br><br>
+-->
+					<p id="production5" class="fake">　</p>
+				</div>
+
+				<div id="content5-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management5" class="fake">　</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co6" class="divCo">
+
+			<div id="fingers6" class="fingers">
+				<button class="finger" id="finger6-1" onclick="fingerToggle('co6', 'finger6-1')" value="1"></button>
+				<button class="finger" id="finger6-2" onclick="fingerToggle('co6', 'finger6-2')" value="1"></button>
+				<button class="finger" id="finger6-3" onclick="fingerToggle('co6', 'finger6-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn6" class="btnCo" onclick="coToggle('co6', 'fingers6')" value="1">-</button>
+				<input id="GM6" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section6">
+			
+				<div id="content6-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales6" class="fake">　</p>
+				</div>
+
+				<div id="content6-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production6" class="fake">　</p>
+				</div>
+
+				<div id="content6-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management6" class="fake">　</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co7" class="divCo">
+
+			<div id="fingers7" class="fingers">
+				<button class="finger" id="finger7-1" onclick="fingerToggle('co7', 'finger7-1')" value="1"></button>
+				<button class="finger" id="finger7-2" onclick="fingerToggle('co7', 'finger7-2')" value="1"></button>
+				<button class="finger" id="finger7-3" onclick="fingerToggle('co7', 'finger7-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn7" class="btnCo" onclick="coToggle('co7', 'fingers7')" value="1">-</button>
+				<input id="GM7" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section7">
+			
+				<div id="content7-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales7" class="fake">　</p>
+				</div>
+
+				<div id="content7-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production7" class="fake">　</p>
+				</div>
+
+				<div id="content7-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management7" class="fake">　</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co8" class="divCo">
+
+			<div id="fingers8" class="fingers">
+				<button class="finger" id="finger8-1" onclick="fingerToggle('co8', 'finger8-1')" value="1"></button>
+				<button class="finger" id="finger8-2" onclick="fingerToggle('co8', 'finger8-2')" value="1"></button>
+				<button class="finger" id="finger8-3" onclick="fingerToggle('co8', 'finger8-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn8" class="btnCo" onclick="coToggle('co8', 'fingers8')" value="1">-</button>
+				<input id="GM8" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section8">
+			
+				<div id="content8-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales8" class="fake">　</p>
+				</div>
+
+				<div id="content8-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production8" class="fake">　</p>
+
+				</div>
+
+				<div id="content8-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management8" class="fake">　</p>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="co9" class="divCo">
+
+			<div id="fingers9" class="fingers">
+				<button class="finger" id="finger9-1" onclick="fingerToggle('co9', 'finger9-1')" value="1"></button>
+				<button class="finger" id="finger9-2" onclick="fingerToggle('co9', 'finger9-2')" value="1"></button>
+				<button class="finger" id="finger9-3" onclick="fingerToggle('co9', 'finger9-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn9" class="btnCo" onclick="coToggle('co9', 'fingers9')" value="1">-</button>
+				<input id="GM9" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section9">
+			
+				<div id="content9-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales9" class="fake">　</p>
+				</div>
+
+				<div id="content9-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production9" class="fake">　</p>
+				</div>
+
+				<div id="content9-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management9" class="fake">　</p>
+				</div>
+				
+			</div>
+		</div>
+
+
+		<div id="co10" class="divCo">
+
+			<div id="fingers10" class="fingers">
+				<button class="finger" id="finger10-1" onclick="fingerToggle('co10', 'finger10-1')" value="1"></button>
+				<button class="finger" id="finger10-2" onclick="fingerToggle('co10', 'finger10-2')" value="1"></button>
+				<button class="finger" id="finger10-3" onclick="fingerToggle('co10', 'finger10-3')" value="1"></button>
+			</div>
+
+			<div class="boxCo">
+				<button id="btn10" class="btnCo" onclick="coToggle('co10', 'fingers10')"value="1">-</button>
+				<input id="GM10" class="GM" value="-" readonly>
+			</div>
+
+			<div class="secName" id="section10">
+
+				<div id="content10-1" class="content" style="margin-right: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">영 업</a>
+
+					<p id="sales10" class="fake">　</p>
+				</div>
+
+				<div id="content10-2" class="content">
+					<input class="secCount" readonly>
+					<a class="dept">생 산</a>
+
+					<p id="production10" class="fake">　</p>
+				</div>
+
+				<div id="content10-3" class="content" style="margin-left: 2px;">
+					<input class="secCount" readonly>
+					<a class="dept">관 리</a>
+
+					<p id="management10" class="fake">　</p>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Large modal -->
+	<div class="modal fade bd-example-modal-lg" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" style="max-width: 1000px;">
+			<div class="modal-content" style="width: auto; height: auto;">
+
+				<div class="modal-header" style="padding: 10px;">
+					<button class="btn" onclick="backToFirst()" style="vertical-align: middle;">◀ Back</button>
+					<h5 class="modal-title" id="exampleModalLongTitle" style="width: 100%">Organization Chart</h5>
+					<button class="close" data-dismiss="modal" aria-label="Close" style="line-height: 36px; margin-right: 5px; outline: none;" onclick="cleanLayer()"><span aria-hidden="true">&times;</span></button>
+				</div>
+
+				<div class="modal-body" style="width: 1000px; padding : 10px;">
+
+					<div id="largeInformation" style="width: 100%; height: 180px; display: flex; align-items: center; justify-content: center;">
+						<div id="photoBox2">
+							<img id="info2-0" width="130" height="160" style="padding: 1px;">
+						</div>
+
+						<div class="col1">
+							<ul>
+								<li style="font-size: 16px;">Name</li>
+								<li><input id="info2-1" readonly> </li>
+							</ul>
+							<ul>
+								<li>Position</li>
+								<li><input id="info2-2" readonly></li>
+							</ul>
+							<ul>
+								<li>Emp ID</li>
+								<li><input id="info2-3" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col2">
+							<ul>
+								<li>English Name</li>
+								<li><input id="info2-4" readonly></li>
+							</ul>
+							<ul>
+								<li>Department</li>
+								<li><input id="info2-5" readonly></li>
+							</ul>
+							<ul>
+								<li>Phone</li>
+								<li><input id="info2-6" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col3">
+							<ul>
+								<li>Gender</li>
+								<li><input id="info2-7" readonly></li>
+							</ul>
+							<ul>
+								<li>Job</li>
+								<li><input id="info2-8" readonly></li>
+							</ul>
+							<ul>
+								<li>E-mail</li>
+								<li><input id="info2-9" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col4">
+							<ul>
+								<li>Nationality</li>
+								<li><input id="info2-10" readonly></li>
+							</ul>
+							<ul>
+								<li>Skill</li>
+								<li><input id="info2-11" readonly></li>
+							</ul>
+							<ul>
+								<li>Religion</li>
+								<li><input id="info2-12" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col5">
+							<ul>
+								<li>Date of Birth</li>
+								<li><input id="info2-13" readonly></li>
+							</ul>
+							<ul>
+								<li>Date of Join</li>
+								<li><input id="info2-14" readonly></li>
+							</ul>
+							<ul>
+								<li>Status</li>
+								<li><input id="info2-15" readonly></li>
+							</ul>
+						</div>
+
+						<div style="width: 1px; height: 100%; margin: 15px; margin-left: 25px; border-left: 1px solid #dddddd;">
+							<a></a>
+						</div>
+
+						<div class="col6">
+							<ul>
+								<li>Detail 1</li>
+								<li><input id="d1" readonly></li>
+							</ul>
+							<ul>
+								<li>Detail 2</li>
+								<li><input id="d2" readonly></li>
+							</ul>
+							<ul>
+								<li>Detail 3</li>
+								<li><input id="d3" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col6">
+							<ul>
+								<li>Detail 4</li>
+								<li><input id="d4" readonly></li>
+							</ul>
+							<ul>
+								<li>Detail 5</li>
+								<li><input id="d5" readonly></li>
+							</ul>
+							<ul>
+								<li>Detail 6</li>
+								<li><input id="d6" readonly></li>
+							</ul>
+						</div>
+
+					</div>
+
+					<hr />
+
+					<div id="master" style="width: 100%; height: 60px; text-align: center;">
+						<button style="width: 100px; border: 0; display: inline-block; padding: 5px;">박상완 부장</button>
+					</div>
+					<p>123</p>
+					<p>123</p>
+					<p>123</p>
+					<p>123</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Information Modal -->
+	<div class="modal" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 700px;">
+			<div class="modal-content" style="width: auto; height: auto; overflow: hidden;">
+
+				<div class="modal-header" style="padding: 5px;">
+					<h5 class="modal-title" id="exampleModalLongTitle" style="width: 100%;">INFORMATION</h5>
+					<button class="close" data-dismiss="modal" aria-label="Close" style="line-height: 36px; margin-right: 5px; outline: none;" onclick="cleanLayer()"><span aria-hidden="true">&times;</span></button>
+				</div>
+
+				<div class="modal-body" id="info-body" style="padding: 10px; padding-bottom: 0; width: 700px; height: 350px; font-size: 16px;">
+					<div id="information" style="width: 100%; height: 180px;">
+						<div id="photoBox">
+							<img id="info0" width="130" height="160" style="padding: 1px;">
+						</div>
+
+						<div class="col1">
+							<ul>
+								<li style="font-size: 16px;">Name</li>
+								<li><input id="info1" readonly> </li>
+							</ul>
+							<ul>
+								<li>Position</li>
+								<li><input id="info2" readonly></li>
+							</ul>
+							<ul>
+								<li>Emp ID</li>
+								<li><input id="info3" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col2">
+							<ul>
+								<li>English Name</li>
+								<li><input id="info4" readonly></li>
+							</ul>
+							<ul>
+								<li>Department</li>
+								<li><input id="info5" readonly></li>
+							</ul>
+							<ul>
+								<li>Phone</li>
+								<li><input id="info6" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col3">
+							<ul>
+								<li>Gender</li>
+								<li><input id="info7" readonly></li>
+							</ul>
+							<ul>
+								<li>Job</li>
+								<li><input id="info8" readonly></li>
+							</ul>
+							<ul>
+								<li>E-mail</li>
+								<li><input id="info9" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col4">
+							<ul>
+								<li>Nationality</li>
+								<li><input id="info10" readonly></li>
+							</ul>
+							<ul>
+								<li>Skill</li>
+								<li><input id="info11" readonly></li>
+							</ul>
+							<ul>
+								<li>Religion</li>
+								<li><input id="info12" readonly></li>
+							</ul>
+						</div>
+
+						<div class="col5">
+							<ul>
+								<li>Date of Birth</li>
+								<li><input id="info13" readonly></li>
+							</ul>
+							<ul>
+								<li>Date of Join</li>
+								<li><input id="info14" readonly></li>
+							</ul>
+							<ul>
+								<li>Status</li>
+								<li><input id="info15" readonly></li>
+							</ul>
+						</div>
+
+					</div>
+
+					<hr style="margin: 4px; height: 1px;" />
+
+					<div id="moreInfo" style="width: 680px; height: 140px; margin-bottom: 10px">
+
+						<div style="margin: 10px; margin-left: 15px; margin-right: 20px; float: left;">
+							<button class="btn" id="detail" onclick="showInfo()" style="height: 120px;">Detail</button>
+						</div>
+
+						<div class="hiddenInfo" id="hiddenInfo1">
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 1</a>
+							<input style="width : 150px;">
+							<br><br>
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 3</a>
+							<input style="width : 150px;">
+							<br><br>
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 5</a>
+							<input style="width : 150px;">
+						</div>
+
+						<div class="hiddenInfo" id="hiddenInfo2">
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 2</a>
+							<input style="width : 150px;">
+							<br><br>
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 4</a>
+							<input style="width : 150px;">
+							<br><br>
+							<a style="width: 115px; line-height: 30px; padding: 0; display: inline-block; text-align: center;">Detail 6</a>
+							<input style="width : 150px;">
+						</div>
+
+					</div>
+
+
+					<div id="layer1" style="width: 680px; text-align: center; display: none;">
+						<hr style="margin: 0; height: 1px;" />
+						<label style="font-size: 20px; margin-top: 10px; margin-left: 20px; float: left;">Level 1</label>
+						<button class="subStaff" onclick="callLayer(2)" value="0">Lee Byung Hun</button>
+					</div>
+
+					<div id="layer2" style="width: 680px; text-align: center; display: none;">
+						<hr style="margin: 0; height: 1px;" />
+						<label style="font-size: 20px; margin-top: 10px; margin-left: 20px; float: left;">Level 2</label>
+						<button class="subStaff" onclick="callLayer(3)">Lee Won Chan</button>
+						<button class="subStaff" onclick="callLayer(3)">Lee Eun Ju</button>
+					</div>
+
+					<div id="layer3" style="width: 680px; text-align: center; display: none;">
+						<hr style="margin: 0; height: 1px;" />
+						<label style="font-size: 20px; margin-top: 12px; margin-left: 20px; float: left;">Level 3</label>
+						<button class="subStaff" onclick="callLayer(4)">AB C DE</button>
+						<button class="subStaff" onclick="callLayer(4)">FGH IJ</button>
+					</div>
+
+					<div id="layer4" style="width: 680px; text-align: center; display: none;">
+						<hr style="margin: 0; height: 1px;" />
+						<label style="font-size: 20px; margin-top: 12px; margin-left: 20px; float: left;">Level 4</label>
+						<button class="subStaff" onclick="callLayer(5)">KLMN O</button>
+						<button class="subStaff" onclick="callLayer(5)">P QRS T</button>
+					</div>
+
+					<div id="layer5" style="width: 680px; text-align: center; display: none;">
+						<hr style="margin: 0; height: 1px;" />
+						<label style="font-size: 20px; margin-top: 12px; margin-left: 20px; float: left;">Level 5</label>
+						<button class="subStaff">U WXYZ</button>
+						<button class="subStaff">123456</button>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+
+					<div class="dep mr-auto" style="margin-left: 10px; float: left;">
+						<input id="manager" value="Manager of" readonly>
+						<button class="btn" id="dep1" style="outline: none; margin-left: 10px; margin-right: 10px;" onclick="layer()" value="0">영업팀</button>
+						<button class="btn" id="dep2" onclick="openSecondbModal()">상품기획실</button>
+						<button class="btn" id="dep3" hidden></button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<script>
+		// Toggle button which calls layer or delete layer
+		function layer() {
+
+			if (document.getElementById("dep1").value == 0) {
+				document.getElementById("dep1").value = 1;
+				callLayer(1);
+			} else {
+				document.getElementById("dep1").value = 0;
+				cleanLayer();
+			}
+		}
+
+		function callLayer(level) {
+
+			$(".subStaff").click(function() {
+				$(this).addClass("subStaff-selected");
+
+			});
+
+			var newLayer = document.getElementById("layer" + level);
+			var body = document.getElementById("info-body");
+			var bodyStyle = body.currentStyle || window.getComputedStyle(body);
+			var newHeight = parseInt(bodyStyle.height.split("px")[0]);
+
+			if (newLayer.style.display == "none") {
+				document.getElementById("info-body").style.height = newHeight + 57 + "px";
+				newLayer.style.display = "inline-block";
+			}
+		}
+
+		// Initializing Layer Section
+		function cleanLayer() {
+
+			for (var i = 1; i < 6; i++) {
+				var body = document.getElementById("info-body");
+				var bodyStyle = body.currentStyle || window.getComputedStyle(body);
+				var newHeight = parseInt(bodyStyle.height.split("px")[0]);
+				document.getElementById("dep1").value = 0;
+
+				if (document.getElementById("layer" + i).style.display == "inline-block") {
+					document.getElementById("info-body").style.height = newHeight - 57 + "px";
+					document.getElementById("layer" + i).style.display = "none";
+				}
+			}
+			$(".subStaff").removeClass("subStaff-selected");
+		}
+
+	</script>
+
+    <!-- Custom Js file -->
+	<script src="/js/corporation.js"></script>
+    
+	<!-- Bootstrap core JavaScript -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

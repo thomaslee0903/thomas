@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>VHRM - Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link href="/css/hover.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* width */
+
+        div::-webkit-scrollbar {
+            background-color: transparent;
+        }
+
+        /* Track */
+
+        div::-webkit-scrollbar-track {
+            border-radius: 20px;
+            background-color: transparent;
+        }
+
+        /* Handle */
+
+        div::-webkit-scrollbar-thumb {
+            border-radius: 3em;
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        /* Handle on hover */
+
+        div::-webkit-scrollbar-thumb:hover {
+            width: 12px;
+
+            background-color: rgba(0, 0, 0, .4);
+        }
+
+        header {
+            width: 100%;
+            height: 35px;
+            z-index: 5;
+            background-color: #3f3f3f;
+            -webkit-transition: all 0.3s ease-out;
+        }
+
+
+        .menu {
+            margin-top: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1) !important;
+            padding: 0;
+            margin-left: 20px;
+            text-decoration: none !important;
+            display: inline-block;
+
+        }
+
+        .menu:hover {
+            color: #66aeff !important;
+            text-decoration: none;
+        }
+
+        .login_info {
+            float: right;
+            padding-top: 3px;
+            background-color: #3f3f3f;
+
+        }
+
+        .name {
+            color: #fff;
+            width: 50px;
+            height: 0.5%;
+            border-style: none;
+            background-color: #3f3f3f;
+            text-align: center;
+        }
+
+        .employeenum {
+            color: #fff;
+            width: 50px;
+            border-style: none;
+            background-color: #3f3f3f;
+            text-align: left;
+        }
+
+        #searchPerson {
+            border: solid 1.5px #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-left: 0.4%;
+            width: 99%;
+        }
+
+        #searchPerson ul {
+            padding-bottom: 0;
+            margin-top: 0.6%;
+            margin-bottom: 0.6%;
+        }
+
+        #searchPerson ul li {
+            display: inline-block;
+            font-weight: 700;
+            margin-left: 0.5%;
+        }
+
+        #searchPerson ul input {
+            width: 13%;
+            margin-left: 0.3%;
+            height: 30px;
+        }
+
+        #searchPerson>ul>select {
+            width: 10%;
+            margin-left: 0.3%;
+            height: 30px;
+            text-align-last: center;
+        }
+
+        #searchPerson ul button {
+            width: 7.6%;
+            height: 30px;
+            margin-left: 0.3%;
+            background-color: #4584eb;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        @media screen and (max-width: 1363px) {
+            .searchImg {
+                display: inline-block;
+                margin-left: 1%;
+            }
+        }
+
+        @media screen and (min-width: 1363px) {
+            .searchImg {
+                display: inline-block;
+                margin-left: 2.2%;
+            }
+        }
+
+        @font-face {
+            font-family: "NanumSquare";
+            src: url("/font/NanumSquareR.ttf");
+        }
+
+        body,
+        div,
+        p,
+        input,
+        button {
+            font-family: 'NanumSquare';
+        }
+
+        .selected {
+            background-color: rgba(69, 132, 235, .2);
+        }
+
+        .selected:hover {
+            background-color: rgba(69, 132, 235, .2) !important;
+        }
+
+        .reportSelected {
+            background-color: rgba(255, 90, 70, .5) !important;
+        }
+
+        .reportSelected {
+            background-color: rgba(255, 40, 40, .3);
+        }
+
+        #tblBackground {
+            /*    화면에 보여야 할 Table의 가로크기를 잡아줍니다.   */
+            margin-top: 25px;
+            margin-left: 8px;
+            width: 1520px;
+            table-layout: fixed;
+        }
+
+        #divHeadScroll {
+            /*  안의 내용이 790보다 길게 적용이 되므로 overflow-x, overflow-y를 hidden을 걸어줘서 설정한 가로너비만큼만 화면에 보이도록 잡아줍니다.  */
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        #tblHead {
+            /*
+                     *  Table의 필드명의 너비를 여기에서 지정합니다.
+                     *  필드명을 보여줄 테이블은 body보다 하나의 td를 더 가지며 마지막 td는 아무것도 입력하지 않고 크기만 잡아줍니다.
+                     *  이렇게 하는 이유는 데이터를 보여주는 테이블은 세로 스크롤의 가로두께만큼 더 이동하기 때문입니다.
+                     */
+            table-layout: fixed;
+            background-color: #fff;
+            padding-top: 4px;
+            width: 1117px;
+            height: 30px;
+            border-collapse: collapse;
+        }
+
+        #divBodyScroll {
+            /*
+                     *  overflow-x, overflow-y는 scroll로 지정하고,
+                     *  height는 테이블의 데이터가 나올 기본 크기를 잡아줍니다.
+                     *  세로길이를 잡아주지 않으면 overflow-y가 걸리지 않습니다.
+                     */
+            width: 100%;
+            height: 200px;
+            overflow-x: scroll;
+            overflow-y: scroll;
+        }
+
+        #createTable tr:hover {
+            background-color: rgba(69, 132, 235, .08);
+
+        }
+
+        #tblBody {
+            /*
+                     * tblBody의 데이터는 필요한 열의 수만큼만 만드시고 헤더와 col의 width는 동일해야 합니다.
+                     */
+            width: 1100px;
+            table-layout: fixed;
+            height: 30px;
+            border-collapse: collapse;
+        }
+
+        /* 테이블 스타일용 */
+
+        .title {
+            text-align: center;
+            background-color: #2b66bc;
+            padding: 0.5%;
+            color: #fff;
+        }
+
+        .content {
+            border-bottom: 1px solid #efefef;
+            padding: 10px 10px 10px 10px;
+            text-align: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        /*나라 메뉴*/
+
+        #countryMenu {
+            margin-top: 1%;
+            margin-left: 1%;
+            width: 49%;
+            float: left;
+        }
+
+        #countryMenu button {
+            width: 15%;
+            padding: 1% 1% 0.9% 1%;
+            background-color: #fff;
+            border: none;
+            display: inline-block;
+            float: left;
+        }
+
+        #countryMenu button:hover {
+            cursor: pointer;
+
+        }
+
+        #countryMenu button:focus {
+            outline: none;
+        }
+
+        /*수정 메뉴*/
+
+        #editMenu {
+            width: 47%;
+            margin-top: 1%;
+            margin-right: 2%;
+            float: right;
+        }
+
+        #editMenu button {
+            width: 11%;
+            padding: 0.3% 1.8% 0.3% 1.8%;
+            margin-top: 1%;
+            margin-right: 5px;
+            float: right;
+            background-color: rgba(0, 0, 0, .65);
+            border: none;
+            font-weight: 570;
+            border: nones;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        #editMenu button:focus {
+            outline: none;
+        }
+
+        /*맨밑에 젤 큰 박스*/
+
+        #editBox {
+            display: inline-block;
+            margin-left: 0.7%;
+            margin-bottom: 5px;
+            /*            background-color: #f9f9f9;*/
+            border: solid 1.5px #e5e5e5;
+        }
+
+        #imageBox {
+            width: 17%;
+            margin-left: 2%;
+            margin-top: 1.5%;
+            font-size: 0.9em;
+            font-weight: bold;
+            display: inline-block;
+            float: left;
+        }
+
+        .addImage {
+            width: 100%;
+            border: solid 1px #ccc;
+            height: 290px;
+            background-image: url(/images/admin/upload_img.png);
+            background-size: cover;
+        }
+
+        #imageBox span {
+            font-size: 1.5em;
+        }
+
+        #imageBox .btn2 {
+            width: 25%;
+            margin-top: 5px;
+            margin-left: 3%;
+            border: none;
+            padding-top: 6px;
+            padding-bottom: 4px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, .65);
+            border-radius: .25em;
+        }
+
+        #imageBox .btn2:hover {
+            cursor: pointer;
+        }
+
+        #imageBox .btn2:focus {
+            outline: none;
+        }
+
+        .filebox label {
+            width: 70%;
+            margin-top: 5px;
+            font-weight: 600;
+            height: 40px;
+            text-align: center;
+            display: inline-block;
+            padding: .5em .75em;
+            color: #fdfdfd;
+            font-size: inherit;
+            line-height: normal;
+            vertical-align: middle;
+            background-color: rgba(0, 0, 0, .65);
+            cursor: pointer;
+            border: 1px solid #ebebeb;
+            border-bottom-color: #e2e2e2;
+            border-radius: .25em;
+        }
+
+        .filebox input[type="file"] {
+            /* 파일 필드 숨기기 */
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        #editInfo1 {
+            display: inline-block;
+            float: left;
+            width: 21.5%;
+            margin-top: 10px;
+            margin-left: 1%;
+        }
+
+        #editInfo2 {
+            display: inline-block;
+            float: left;
+            width: 19%;
+            margin-top: 10px;
+        }
+
+        .infoList {
+            width: 40%;
+            display: inline-block;
+            float: left;
+            text-align: right;
+            font-size: 0.9em;
+            margin-top: 4%;
+            margin-left: 5px;
+        }
+
+        #editInfo1 select,
+        #editInfo2 select {
+            width: 50%;
+            height: 28px;
+            margin-left: 4%;
+            display: inline-block;
+            border: solid 1px #ccc;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        #editInfo1 select:not(:first-child),
+        #editInfo2 select:not(:first-child) {
+            margin-top: 3%;
+        }
+
+        #editInfo1 input,
+        #editInfo2 input {
+            width: 50%;
+            height: 28px;
+            margin-left: 4%;
+            display: inline-block;
+            border: solid 1px #ccc;
+            border-radius: 3px;
+        }
+
+        #editInfo1 input,
+        #editInfo2 input {
+            margin-top: 3%;
+        }
+
+        #indirectBox {
+            width: 36%;
+            height: 160px;
+            display: inline-block;
+            margin-left: 2%;
+            margin-top: 10px;
+
+        }
+
+        .reportListTitle {
+            background-color: #2b66bc;
+            color: #fff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            line-height: 120%;
+            padding: 0.5%;
+        }
+
+        #reportBox {
+            width: 36%;
+            height: 160px;
+            margin-top: 1%;
+            display: inline-block;
+            margin-left: 2%;
+        }
+
+        .reportImg {
+            width: 5%;
+            display: inline-block;
+            float: left;
+            margin-right: 8px;
+
+        }
+
+        .reportType {
+            width: 35%;
+            display: inline-block;
+            float: left;
+            font-weight: 600;
+            font-size: 1.1em;
+
+        }
+
+        .reportContent1 {
+            width: 100%;
+
+        }
+
+        .reportContent2 {
+            width: 100%;
+
+        }
+
+        #reportTitle1,
+        #reportTitle2 {
+            display: inline-block;
+            width: 100%;
+            margin-top: 1%;
+
+        }
+
+        /*.reportContent1 div ul이 스크롤이 있어서 더 안쪽에 있어서 제목을 안으로 밀어넣음*/
+
+        /*간접보고 직접보고 넣는 칸*/
+
+        .reportContent1 div ul,
+        .reportContent2 div ul {
+            margin-bottom: 0;
+            padding: 1.2%;
+
+        }
+
+        .reportContent1 div ul:hover,
+        .reportContent2 div ul:hover {
+            background-color: rgba(69, 132, 235, .08);
+            /*             background-color:#fff;            */
+        }
+
+        .reportContent1 ul,
+        .reportContent2 ul,
+        .reportContent1 div ul,
+        .reportContent2 div ul {
+            display: flex;
+
+        }
+
+        .reportContent1 ul li,
+        .reportContent2 ul li,
+        .reportContent1 div ul li,
+        .reportContent2 div ul li {
+            display: inline-block;
+            list-style: none;
+            flex: 1;
+            text-align: center;
+        }
+
+        .reportbtn1,
+        .reportbtn2,
+        .reportbtn3,
+        .reportbtn4 {
+            width: 22px;
+            height: 22px;
+            background-size: cover;
+            float: right;
+            margin: 0px 2px 0px 2px;
+            border: none;
+            border-radius: 12px;
+
+        }
+
+        .reportButtons button:focus {
+            outline: none;
+        }
+
+        .reportButtons button:hover {
+            cursor: pointer;
+        }
+
+
+        .reportbtn1 {
+            background: url(/images/admin/btn1.png);
+            background-color: rgba(0, 0, 0, .65);
+            background-size: cover;
+        }
+
+        .reportbtn2 {
+            background: url(/images/admin/btn2.png);
+            background-color: rgba(0, 0, 0, .65);
+            background-size: cover;
+        }
+
+        .reportbtn3 {
+            background: url(/images/admin/btn3.png);
+            background-color: rgba(0, 0, 0, .65);
+            background-size: cover;
+        }
+
+        .reportbtn4 {
+            background: url(/images/admin/btn4.png);
+            background-color: rgba(0, 0, 0, .65);
+            background-size: cover;
+        }
+
+        input {
+            padding-left: 5px;
+        }
+
+        #contextMenu {
+            position: absolute;
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header style="padding-bottom:2px; padding-left: 10px;">
+
+        <img src="/images/logo.png" width="40" height="23" />
+        <a style="margin-left: 10px; color: #ffffff; font-weight: bold; cursor:default; display: inline-block;">Visual HRM</a>
+
+        <a class="menu" style="margin-left: 50px;" href="/">CORPORATION</a>
+        <a class="menu" href="/department">DEPARTMENT</a>
+        <a class="menu" href="/admin">ADMIN</a>
+
+        <div class="login_info">
+            <img src="/images/userID.png" width="20" height="23" style="padding-bottom: 3px;" />
+            <input class="name" value="이은주" readonly/>
+            <input class="employeenum" value="부장" readonly/>
+        </div>
+    </header>
+
+    <div id="searchPerson">
+        <ul>
+
+            <img src="/images/admin/searchImg.png" width=23 height=23 class="searchImg">
+
+
+            <li>COMPANY</li>
+            <select name='company'>
+                    <option value='' selected>법인 목록</option>
+                    <option value='1' >성남본사</option>
+                    <option value='2'>PKS-1</option>
+                    <option value='3'>PKS-2</option>
+                    <option value='4'>PKS-3</option>
+                    <option value='5'>JSC</option>
+                    <option value='6'>PKBT</option>
+                    <option value='7'>PKSU</option>
+                    <option value='8'>PKGR</option>
+                    <option value='9'>PKMM</option>
+                    <option value='10'>PKET</option>
+                
+              </select>
+            <div class="searchImg">
+                <img src="/images/admin/searchImg.png" width=23 height=23 class="searchImg">
+            </div>
+            <li>DEPARTMENT</li>
+            <select name='corporation'>
+                    <option value='' selected>부서 목록</option>
+                    <option value='apple'>영업</option>
+                    <option value='banana'>생산</option>
+                    <option value='lemon'>관리</option>
+            </select>
+            <div class="searchImg">
+                <img src="/images/admin/searchImg.png" width=23 height=23 class="searchImg">
+            </div>
+            <li>EMP ID</li>
+            <input/>
+            <div class="searchImg">
+                <img src="/images/admin/searchImg.png" width=23 height=23 class="searchImg">
+            </div>
+            <li>EMP NAME</li>
+            <input/>
+            <button>SEARCH</button>
+        </ul>
+    </div>
+
+    <table id="tblBackground" cellspacing="0" style="margin-top: 10px;">
+        <tbody>
+            <tr>
+                <td>
+                    <div id="divHeadScroll">
+                        <table id="tblHead" border="0">
+                            <colgroup>
+                                <col style="width:120px;">
+                                <col style="width:100px;">
+                                <col style="width:170px;">
+                                <col style="width:100px;">
+                                <col style="width:100px;">
+                                <col style="width:150px;">
+                                <col style="width:100px;">
+                                <col style="width:100px;">
+                                <col style="width:150px;">
+                                <col style="width:130px;">
+                                <col style="width:150px;">
+                                <col style="width:150px;">
+                                <col style="width:180px;">
+                                <col style="width:100px;">
+                                <col style="width:100px;">
+                                <col style="width:15px;">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td class="title">Emp ID</td>
+                                    <td class="title">NAME</td>
+                                    <td class="title">ENGLISH NAME</td>
+                                    <td class="title">GENDER</td>
+                                    <td class="title">NATIOALITY</td>
+                                    <td class="title">BIRTH</td>
+                                    <td class="title">POSITION</td>
+                                    <td class="title">DEP.</td>
+                                    <td class="title">JOB</td>
+                                    <td class="title">SKILL</td>
+                                    <td class="title">DATE OF JOIN</td>
+                                    <td class="title">PHONE</td>
+                                    <td class="title">EMAIL</td>
+                                    <td class="title">RELIGION</td>
+                                    <td class="title">CONTRACT</td>
+                                    <td class="title"></td>
+                                    <!--꼭 있어야함-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="divBodyScroll">
+                        <table id="tblBody" border="0">
+                            <colgroup>
+                                <col style="width:120px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:170px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:150px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:150px;" class="right_border">
+                                <col style="width:130px;" class="right_border">
+                                <col style="width:150px;" class="right_border">
+                                <col style="width:150px;" class="right_border">
+                                <col style="width:180px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                                <col style="width:100px;" class="right_border">
+                            </colgroup>
+                            <tbody id="createTable">
+                                <tr id="right_border_tr">
+                                    <td class="content right_border">22180751</td>
+                                    <td class="content right_border">이은주</td>
+                                    <td class="content right_border">Lee EunJu</td>
+                                    <td class="content right_border">F</td>
+                                    <td class="content right_border">ROK</td>
+                                    <td class="content right_border">06/10/1996</td>
+                                    <td class="content right_border">인턴</td>
+                                    <td class="content right_border">ERP</td>
+                                    <td class="content right_border">Visual HRM</td>
+                                    <td class="content right_border">★★★★★</td>
+                                    <td class="content right_border">02/07/2018</td>
+                                    <td class="content right_border">01063843133</td>
+                                    <td class="content right_border">teans_62@hnamil.net</td>
+                                    <td class="content right_border">없음</td>
+                                    <td class="content right_border">6/10/2021</td>
+                                </tr>
+                                <tr>
+                                    <td class="content right_border">22180752</td>
+                                    <td class="content right_border">이원찬</td>
+                                    <td class="content right_border">Lee EunJu</td>
+                                    <td class="content right_border">F</td>
+                                    <td class="content right_border">ROK</td>
+                                    <td class="content right_border">06/10/1996</td>
+                                    <td class="content right_border">인턴</td>
+                                    <td class="content right_border">ERP</td>
+                                    <td class="content right_border">Visual HRM</td>
+                                    <td class="content right_border">★★★★</td>
+                                    <td class="content right_border">02/07/2018</td>
+                                    <td class="content right_border">01085537233</td>
+                                    <td class="content right_border">cahn@pungkook.net</td>
+                                    <td class="content right_border">없음</td>
+                                    <td class="content right_border">6/10/2021</td>
+                                </tr>
+                                <tr>
+                                    <td class="content right_border">22180610</td>
+                                    <td class="content right_border">이병훈</td>
+                                    <td class="content right_border">Lee ByeongHoon</td>
+                                    <td class="content right_border">M</td>
+                                    <td class="content right_border">ROK</td>
+                                    <td class="content right_border">06/10/1996</td>
+                                    <td class="content right_border">사원</td>
+                                    <td class="content right_border">ERP</td>
+                                    <td class="content right_border">Visual HRM</td>
+                                    <td class="content right_border">★★★</td>
+                                    <td class="content right_border">02/09/2016</td>
+                                    <td class="content right_border">01045798635</td>
+                                    <td class="content right_border">hoon@pungkook.net</td>
+                                    <td class="content right_border">없음</td>
+                                    <td class="content right_border">6/10/2021</td>
+                                </tr>
+                                <tr>
+                                    <td class="content right_border">22180305</td>
+                                    <td class="content right_border">NAVEEN</td>
+                                    <td class="content right_border">NAVEEN</td>
+                                    <td class="content right_border">M</td>
+                                    <td class="content right_border">INDO</td>
+                                    <td class="content right_border">06/10/1973</td>
+                                    <td class="content right_border">부장</td>
+                                    <td class="content right_border">ERP</td>
+                                    <td class="content right_border">Visual HRM</td>
+                                    <td class="content right_border">★★</td>
+                                    <td class="content right_border">02/07/2005</td>
+                                    <td class="content right_border">01078463534</td>
+                                    <td class="content right_border">naveen@hnamil.net</td>
+                                    <td class="content right_border">없음</td>
+                                    <td class="content right_border">6/10/2021</td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 밑에 메뉴들 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+    <!--나라 메뉴들-->
+    <div id="countryMenu">
+        <button class="hvr-underline-from-center">KOR BASE</button>
+        <button class="hvr-underline-from-center">VN BASE</button>
+        <button class="hvr-underline-from-center">FOR BASE</button>
+    </div>
+
+    <!--에디트 메뉴들-->
+    <div id="editMenu">
+        <button id="newButton">NEW</button>
+        <button id="saveButton">SAVE</button>
+        <button id="deleteButton">DELETE</button>
+        <button id="editButton">EDIT</button>
+    </div>
+
+    <!--사진이랑 여러개 편집할 수 있는 창-->
+    <div id="editBox">
+        <div id="imageBox">
+            <div class="addImage">
+
+            </div>
+            <div class="filebox">
+                <label for="ex_file"><span> + </span>ADD IMAGE</label>
+                <input type="file" id="ex_file">
+
+                <button class="btn2">
+                    <img src="/images/admin/dispose.png" width=30 height=30>
+                </button>
+            </div>
+        </div>
+
+        <div id="editInfo1">
+            <div class="infoList first">COMPANY</div>
+            <select name='fruits' id="select1" disabled>
+                    <option value='' selected>법인 목록</option>
+                    <option value='1'>성남본사</option>
+                    <option value='2'>PKS-1</option>
+                    <option value='3'>PKS-2</option>
+                    <option value='4'>PKS-3</option>
+                    <option value='5'>JSC</option>
+                    <option value='6'>PKBT</option>
+                    <option value='7'>PKSU</option>
+                    <option value='8'>PKGR</option>
+                    <option value='9'>PKMM</option>
+                    <option value='10'>PKET</option>
+                </select>
+            <div class="infoList">DEPARTMENT</div>
+            <select name='department' id="select2" disabled>
+                    <option value='' selected>부서 목록</option>
+                    <option value='apple'>영업</option>
+                    <option value='banana'>생산</option>
+                    <option value='lemon'>관리</option>
+                </select>
+            <div class="infoList">Emp ID</div> <input disabled id="inputInfo1" />
+            <div class="infoList">NAME</div> <input disabled id="inputInfo2" />
+            <div class="infoList">ENGLISH NAME</div> <input disabled id="inputInfo3" />
+            <div class="infoList">GENDER</div> <input disabled id="inputInfo4" />
+            <div class="infoList">NATIONALITY</div> <input disabled id="inputInfo5" />
+            <div class="infoList">BIRTH</div> <input disabled id="inputInfo6" />
+            <div class="infoList">POSITION</div> <input disabled id="inputInfo7" />
+        </div>
+
+        <div id="editInfo2">
+            <div class="infoList first">DEP.</div> <input disabled id="inputInfo8" />
+            <div class="infoList">SKILL</div> <input disabled id="inputInfo9" />
+            <div class="infoList">JOB</div><input disabled input id="inputInfo10" />
+            <div class="infoList">DATE OF JOIN</div> <input disabled id="inputInfo11" />
+            <div class="infoList">PHONE</div> <input disabled id="inputInfo12" />
+            <div class="infoList">EMAIL</div> <input disabled id="inputInfo13" />
+            <div class="infoList">RELIGION</div> <input disabled id="inputInfo14" />
+            <div class="infoList">CONTRACT</div> <input disabled id="inputInfo15" />
+        </div>
+
+        <div id="reportBox">
+            <!--직접 보고-->
+            <div id="reportTitle1">
+                <div class="reportImg">
+                    <img src="/images/admin/searchImg.png" width=21 height=21 class="searchImg">
+                </div>
+                <div class="reportType">DIRECT REPORT</div>
+                <div class="reportButtons">
+                    <button class="reportbtn1"></button>
+                    <button class="reportbtn2"></button>
+                    <button class="reportbtn3"></button>
+                    <button class="reportbtn4"></button>
+                </div>
+            </div>
+            <div class="reportContent1" style="height:80px;">
+                <div class="reportListTitle">
+                    <ul>
+                        <li>GROUP CODE</li>
+                        <li>Emp ID</li>
+                        <li>Emp Name</li>
+                    </ul>
+                </div>
+                <div style="overflow-x:auto;" id="directReportList">
+                    <ul>
+                        <li>EN123</li>
+                        <li>112273</li>
+                        <li>Eunju Lee</li>
+                    </ul>
+                </div>
+            </div>
+            <!--간접보고-->
+            <div id="reportTitle2" style="margin-top:5%;">
+                <div class="reportImg">
+                    <img src="/images/admin/searchImg.png" width=21 height=21 class="searchImg">
+                </div>
+                <div class="reportType">INDIRECT REOPORT</div>
+                <div class="reportButtons">
+                    <button class="reportbtn1"></button>
+                    <button class="reportbtn2"></button>
+                    <button class="reportbtn3"></button>
+                    <button class="reportbtn4"></button>
+                </div>
+            </div>
+
+            <div class="reportContent2" style="height:150px; border:solid 1px #ccc;">
+                <div class="reportListTitle">
+                    <ul>
+                        <li>GROUP CODE</li>
+                        <li>Emp ID</li>
+                        <li>Emp Name</li>
+                    </ul>
+                </div>
+                <div style="height:100px; overflow-x: auto;" id="inDirectReportList">
+                    <ul>
+                        <li>G00051</li>
+                        <li>2218035</li>
+                        <li>김승현</li>
+                    </ul>
+                    <ul>
+                        <li>G00051</li>
+                        <li>2217416</li>
+                        <li>김상용</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--
+    context menu
+    <div id="contextMenu" class="dropdown clearfix">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display:block;position:static;margin-bottom:5px; border-radius:10px;">
+            <li style="text-align:center; cursor:pointer" class="addReport"><a tabindex="-1">add to direct report</a></li>
+        </ul>
+    </div>
+
+-->
+
+
+    <script>
+        $(function() {
+            // divBodyScroll의 스크롤이 동작할때에 함수를 불러옵니다.
+            $('#divBodyScroll').scroll(function() {
+                // divBodyScroll의 x좌표가 움직인 거리를 가져옵니다.
+                var xPoint = $('#divBodyScroll').scrollLeft();
+                // 가져온 x좌표를 divHeadScroll에 적용시켜 같이 움직일수 있도록 합니다.
+                $('#divHeadScroll').scrollLeft(xPoint);
+            });
+        });
+
+        $(document).ready(function() {
+            //처음 창 켰을 때 크기 변하기
+            $('#tblBackground').css('width', $(window).width() - 20);
+            $('#editBox').css('width', $(window).width() - 20);
+
+            //창 사이즈 바꿨을 때 자동으로 크기 변하기
+            $(window).resize(function() {
+                $('#tblBackground').css('width', $(window).width() - 20);
+                $('#editBox').css('width', $(window).width() - 20);
+
+            });
+        });
+
+    </script>
+    <script>
+        // input들 
+        var ids = new Array("inputInfo1", "inputInfo2", "inputInfo3", "inputInfo4", "inputInfo5", "inputInfo6", "inputInfo7",
+            "inputInfo8", "inputInfo9", "inputInfo10", "inputInfo11", "inputInfo12", "inputInfo13", "inputInfo14", "inputInfo15");
+        //select들
+        var selIds = new Array("select1", "select2");
+
+        myFunction();
+
+        function myFunction() {
+
+            //*tr 하나를 만약에 클릭하면
+
+            $('#tblBody tr').dblclick(function() {
+                //색이 하이라이트 색으로 멈춰있도록 
+                //나머지들은 그냥 흰색으로
+                var target = null;
+                target = $(this);
+                target.addClass('selected').siblings().removeClass('selected');
+
+
+                //***********[direct report]*************
+                //*****작은 버튼들
+                //만약에 작은버튼 중 EDIT버튼을 누르면
+                $('#reportTitle1 .reportbtn4').click(function() {
+                    //1. opposite table malfunctional 되도록
+                    $('#inDirectReportList ul').removeClass('selected');
+                    //2. 표 안의 내용 선택된다.
+                    $('#directReportList ul').click(function() {
+                        var smallTarget = $(this);
+
+                        $(this).addClass('selected').siblings().removeClass('selected');
+                        //**삭제 버튼
+                        $('#reportTitle1 .reportbtn2').click(function() {
+                            smallTarget.remove();
+                        });
+                    });
+                    //큰 표안의 사람 선택
+                    $('#tblBody tr').click(function() {
+                        
+                        $(this).addClass('reportSelected').siblings().removeClass('reportSelected');
+                        //만약 같은거면
+                        var smallTarget = $(this);
+                        var tdArr = new Array(); // 배열 선언
+                        var tr = smallTarget; // 현재 클릭된 Row(<tr>)
+                        var td = tr.children();
+
+                        td.each(function(i) { // 반복문을 이용해서 배열에 값을 담아 사용
+                            tdArr.push(td.eq(i).text());
+                        });
+                        
+                        $('#reportTitle1 .reportbtn1').click(function(){
+                            //선택된것만
+                            if(smallTarget.hasClass('reportSelected')){
+                            $('#directReportList').append(
+                                $('<ul>').append(
+                                    $('<li>').append('-'),
+                                     $('<li>').append('-'),
+                                     $('<li>').append('-')
+                                    )
+                                )
+                        }
+                        })
+                        
+                        
+                    })
+                })
+                //***********[indirect report]*************
+                $('#reportTitle2 .reportbtn4').click(function() {
+                    //[2]위에 테이블의 사람을 하나 선택한다면
+                    $('#tblBody tr').click(function() {
+
+                        var smallTarget = $(this);
+                        var tdArr = new Array(); // 배열 선언
+                        var tr = smallTarget; // 현재 클릭된 Row(<tr>)
+                        var td = tr.children();
+
+                        td.each(function(i) { // 반복문을 이용해서 배열에 값을 담아 사용
+                            tdArr.push(td.eq(i).text());
+                        });
+                    })
+
+                    //[1]opposite table malfunctional되도록한다
+                    $('#directReportList ul').removeClass('selected');
+
+                    //표 안의 내용 선택된다.
+                    $('#inDirectReportList ul').click(function() {
+                        var smallTarget = $(this);
+                        $(this).addClass('selected').siblings().removeClass('selected');
+                        //1. 선택 한 상태에서 -버튼을 누르면 삭제된다.
+                        $('#reportTitle2 .reportbtn2').click(function() {
+                            if (smallTarget.hasClass('selected'))
+                                smallTarget.remove();
+                        })
+                    });
+                })
+                //이 사람의 정보가 editBox의 항목들에 뜬다. BUT 수정은 안됨 -> EDIT버튼을 누른다 -> 수정가능 
+
+                var tdArr = new Array(); // 배열 선언
+                var tr = $(this); // 현재 클릭된 Row(<tr>)
+                var td = tr.children();
+
+                td.each(function(i) { // 반복문을 이용해서 배열에 값을 담아 사용
+                    tdArr.push(td.eq(i).text());
+                });
+
+                for (var i = 0; i < ids.length; i++) {
+                    $('#' + ids[i]).val(td.eq(i).text());
+                }   
+                //***DELETE 버튼
+                //delete 버튼이 사용가능, 그 외에는 delete button 작동 안됨('')
+                //중요한점 : "마지막"에 클릭된 target을 삭제 ==selected(highlited)클래스를 가지고있음
+                $('#deleteButton').on("click", target, function() {
+                    //**SAVE버튼 클릭하면 동작 안되게
+                    //input
+                    for (var i in ids)
+                        $("#" + ids[i]).attr("disabled", true);
+                    //select
+                    for (var i in selIds)
+                        $('#' + selIds[i]).attr("disabled", true);
+
+                    if (target.hasClass("selected")) {
+                        target.remove();
+                        //delete버튼 누른 후 select, input 내용 비우기
+                        for (var i in ids)
+                            $("#" + ids[i]).val('');
+                        //select
+                        for (var i in selIds)
+                            $('#' + selIds[i]).val($('#' + selIds[i] + "option:first").val());
+                    }
+
+                })
+
+
+                //***SAVE 버튼
+                $('#saveButton').click(function() {
+                    //**SAVE버튼 클릭하면 동작 안되게
+                    //input
+                    for (var i in ids)
+                        $("#" + ids[i]).attr("disabled", true);
+                    //select
+                    for (var i in selIds)
+                        $('#' + selIds[i]).attr("disabled", true);
+                    //**바뀐 정보를 표에 그대로 보내기
+                    var temp = [16];
+                    for (var i = 0; i < ids.length; i++) { //바뀐 정보를 배열에 담기
+                        temp[i] = document.getElementById(ids[i]).value;
+                        console.log(temp[i]);
+                    }
+                    //<save기능>
+                    //배열을 표에 그대로 내보내기
+                    //중요한점 : 마지막에 선택된 td에만 save되게
+                    if (target.hasClass("selected")) {
+                        for (var i = 0; i < temp.length; i++) {
+                            tr.children().eq(i).html(temp[i]); //tr.children() == target.children()
+                        }
+                    }
+                });
+
+                //****EDIT 버튼
+                //EDIT버튼 클릭하면 동작 안되게
+                $('#editButton').click(function() {
+                    for (var i in ids)
+                        $("#" + ids[i]).attr("disabled", false);
+
+                    for (var i in selIds)
+                        $('#' + selIds[i]).attr("disabled", false)
+                });
+
+                //그외에는 disabled시키기
+                for (var i in ids)
+                    $("#" + ids[i]).attr("disabled", true);
+
+                for (var i in selIds)
+                    $('#' + selIds[i]).attr("disabled", true);
+            });
+        }
+
+        //****NEW 버튼
+        $('#newButton').click(function() {
+
+            //전에 클릭돼서 하이라이트 되어있던 tr있을지도 모르니까 다 remove selected한다.
+            $('#tblBody tr').removeClass('selected');
+
+            $('#tblBody').prepend(
+                $('<tr>').append( //row가 제일 위에 생기게
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                    $('<td>').append('-').addClass('content right_border'),
+                ).addClass('selected')
+            );
+            //추가되자마자 바로 내용 editbox에 뜨게
+            var tdArr = new Array(); // 배열 선언
+            var tr = $('#tblBody tr'); // 현재 클릭된 Row(<tr>)
+            var td = tr.children();
+
+            td.each(function(i) { // 반복문을 이용해서 배열에 값을 담아 사용
+                tdArr.push(td.eq(i).text());
+            });
+
+            for (var i = 0; i < ids.length; i++) {
+                $('#' + ids[i]).val(td.eq(i).text());
+            }
+            myFunction();
+        });
+        //        //3.**테이블CONTEXT MENU
+        //        function contextMenu() {
+        //            $(function() {
+        //
+        //                var $contextMenu = $("#contextMenu");
+        //
+        //                $("body").on("contextmenu", "#tblBody tr", function(e) {
+        //                    $contextMenu.css({
+        //                        display: "block",
+        //                        left: e.pageX,
+        //                        top: e.pageY
+        //                    });
+        //                    return false;
+        //                });
+        //                $('html').click(function() {
+        //                    $contextMenu.hide();
+        //                });
+        //            });
+        //        }
+
+    </script>
+    <script>
+        //색이 하이라이트 색으로 멈춰있도록 
+        //나머지들은 그냥 흰색으로
+
+        // $(this).addClass('selected').siblings().removeClass('selected');
+
+    </script>
+
+
+</body>
+
+</html>
